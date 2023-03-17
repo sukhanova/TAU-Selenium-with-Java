@@ -5,19 +5,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import pages.HomePage;
+import pages.SecureAreaPage;
 
 import java.util.List;
 
 public class BaseTests {
 
     private WebDriver driver;
+    protected HomePage homePage;
+    protected SecureAreaPage secureAreaPage;
 
-    public static void main(String args[]){
-        BaseTests test = new BaseTests();
-       // test.setUp();
-        test.independenceExerciseSolution();
-    }
-
+    @BeforeClass
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
 
@@ -27,17 +28,22 @@ public class BaseTests {
         driver = new ChromeDriver(options);
 
         driver.get("https://the-internet.herokuapp.com/");
-        System.out.println(driver.getTitle());
+        homePage = new HomePage(driver);
 
-        List<WebElement> links = driver.findElements(By.tagName("a"));
-        System.out.println("Theare are " + links.size() + " links on a page.");
+        secureAreaPage = new SecureAreaPage(driver);
+    }
 
-        WebElement inputsLink = driver.findElement(By.linkText("Inputs"));
-        inputsLink.click();
-
+    @AfterClass
+    public void tearDown(){
         driver.quit();
     }
 
+
+//    public static void main(String args[]){
+//        BaseTests test = new BaseTests();
+//        test.setUp();
+//        // test.independenceExerciseSolution();
+//    }
     public void independenceExerciseSolution(){
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
 
