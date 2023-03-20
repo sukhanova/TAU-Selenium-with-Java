@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ContextAware;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {
@@ -50,6 +51,11 @@ public class HomePage {
     public FileUploadPage clickFileUpload(){
         clickLink("File Upload");
         return new FileUploadPage(driver);
+    }
+
+    public ContextMenuPage clickContextMenu(){
+        clickLink("Context Menu");
+        return new ContextMenuPage(driver);
     }
 
     private void clickLink(String linkText){
