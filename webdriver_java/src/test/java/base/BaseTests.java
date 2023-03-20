@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import pages.HomePage;
 import pages.SecureAreaPage;
 
@@ -27,10 +28,15 @@ public class BaseTests {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
 
-        driver.get("https://the-internet.herokuapp.com/");
+        goHome();
         homePage = new HomePage(driver);
 
         secureAreaPage = new SecureAreaPage(driver);
+    }
+
+    @BeforeMethod
+    public void goHome(){
+        driver.get("https://the-internet.herokuapp.com/");
     }
 
     @AfterClass
