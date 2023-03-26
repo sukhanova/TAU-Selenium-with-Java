@@ -11,10 +11,10 @@ public class ContextMenuTests extends BaseTests{
     public void testRightClick(){
         var menuPage = homePage.clickContextMenu();
         menuPage.rightClickInBox();
-        String expectedmessage = "You selected a context menu";
+        String expectedMessage = "You selected a context menu";
         String message = menuPage.getTextOnPopUp();
         menuPage.acceptPopup();
-        assertEquals(message, expectedmessage, "Actual and expected pop up messages do not match!");
+        assertEquals(message, expectedMessage, "Actual and expected pop up messages do not match!");
 
     }
 }
